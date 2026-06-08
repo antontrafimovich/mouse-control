@@ -18,7 +18,7 @@ let intervalId = null;
 let tunnelProcess = null;
 let isShuttingDown = false;
 
-mouse.config.mouseSpeed = 100;
+mouse.config.mouseSpeed = 800;
 
 async function moveMouseInSquare() {
   try {
@@ -197,6 +197,8 @@ server.listen(port, host, () => {
   if (shouldStartTunnel) {
     startCloudflareTunnel();
   } else {
-    console.log("Cloudflare tunnel disabled. Run `node index.js --tunnel` to expose the server.");
+    console.log(
+      "Cloudflare tunnel disabled. Run `node index.js --tunnel` to expose the server.",
+    );
   }
 });
