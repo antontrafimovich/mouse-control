@@ -10,6 +10,7 @@ const width = 200;
 const intervalMs = 1000 * 60 * 2;
 const host = "localhost";
 const port = Number(process.env.PORT) || 3000;
+const shouldStartTunnel = process.argv.includes("--tunnel");
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const indexPath = join(__dirname, "index.html");
 
@@ -192,5 +193,10 @@ startMouseLoop();
 
 server.listen(port, host, () => {
   console.log(`Mouse control server listening at http://${host}:${port}`);
-  startCloudflareTunnel();
+
+  if (shouldStartTunnel) {
+    startCloudflareTunnel();
+  } else {
+    console.log("Cloudflare tunnel disabled. Run `node index.js --tunnel` to expose the server.");
+  }
 });
